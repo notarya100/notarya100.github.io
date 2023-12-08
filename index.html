@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotArya</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jetbrains+Mono:wght@400;700&display=swap">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        background-color: #1e1e2e;
+        color: #fff;
+        font-family: 'Syne', sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 800px;
+        width: 90%;
+      }
+
+   
+
+      p {
+        font-size: 3em;
+        color: #d2d6e6;
+      }
+
+      a {
+        color: #89b4fa;
+      }
+
+      @media only screen and (max-width: 600px) {
+    
+        p {
+          font-size: 1.5em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p> My name is <span style="color: #fcd3cb;">Arya</span>. I'm a <span style="color: #a6e3a1;">Developer</span> from <span style="color: #74c7ec;">Iran</span>. I also enjoy <span style="color: #fab387;">Gaming</span>. I'm currently <span id="discordStatus"  style="color: #8b85d3;"></span> at Discord, and my username is <span id="discordUsername" style="color: #f38ba8;"></span>. Time is <span id="timeDisplay" style="color: #fccbf0;"></span>. Check out my <span class="link">
+          <a href="https://github.com/notarya100" target="_blank" style="color: #f9e2af;">GitHub</a>
+        </span> too. </p>
+    </div>
+    <script>
+      fetch('https://api.lanyard.rest/v1/users/1147999469854523414/').then(response => response.json()).then(data => {
+        const user = data.data;
+        const user_info = user.discord_user;
+        const username = user_info.username;
+        const status = user.discord_status;
+        if (status === "dnd") {
+          var status2 = "in DND mode";
+        } else {
+          var status2 = status;
+        }
+        document.getElementById('discordStatus').textContent = `${status2}`;
+        document.getElementById('discordUsername').textContent = `${username}`;
+      }).catch(error => {
+        console.error('Error fetching user status:', error);
+      });
+      updateTime();
+
+      function updateTime() {
+        var offset = 3.5; // UTC+3:30
+        var time = new Date(new Date().getTime() + offset * 3600 * 1000).toUTCString().replace(/GMT$/, "");
+        var time1 = time.split(" ");
+        var time2 = time1[4].split(":");
+        var time3 = time2[0] + ":" + time2[1];
+        document.getElementById("timeDisplay").innerHTML = "" + time3 + "";
+      }
+      setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>
