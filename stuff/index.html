@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tools</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #1e1e2e;
+        color: #fff;
+        font-family: 'Syne', sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 800px;
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 3em;
+        color: #d4ebd1;
+        margin-bottom: 20px;
+      }
+
+      .tools-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .tool-box {
+        background-color: #2a2a3e;
+        padding: -10px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(33.33% - 20px); /* Each box takes up 33.33% of the container width with some margin */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease-in-out; /* Added transition effect for the tilt effect */
+      }
+
+      .tool-box:hover {
+        transform: scale(1.1) rotate(5deg); /* Scale the box and add a slight tilt on hover */
+      }
+
+      .tool-content {
+        display: flex;
+        align-items: center;
+      }
+
+      .tool-icon {
+        font-size: 1.5em;
+        color: #e0eee8;
+        margin-right: 10px; /* Added margin to separate icon from text */
+      }
+
+      .tool-name {
+        font-size: 1em;
+        color: #e0eee8;
+      }
+
+      @media only screen and (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        .tool-box {
+          width: calc(50% - 20px); /* On smaller screens, each box takes up 50% of the container width with some margin */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Tools</h1>
+
+      <div class="tools-container">
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-html5 tool-icon"></i>
+            <h2 class="tool-name">HTML</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-css3 tool-icon"></i>
+            <h2 class="tool-name">CSS</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-js tool-icon"></i>
+            <h2 class="tool-name">JavaScript</h2>
+          </div>
+        </div>
+
+        <!-- Add more tool boxes as needed -->
+
+        <div class="tool-box">
+            <div class="tool-content">
+              <i class="fab fa-node-js tool-icon"></i>
+              <h2 class="tool-name">NodeJS</h2>
+            </div>
+          </div>
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-python tool-icon"></i>
+            <h2 class="tool-name">Python</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-react tool-icon"></i>
+            <h2 class="tool-name">React</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fas fa-code tool-icon"></i>
+            <h2 class="tool-name">VS Code</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-github tool-icon"></i>
+            <h2 class="tool-name">GitHub</h2>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-content">
+            <i class="fab fa-figma tool-icon"></i>
+            <h2 class="tool-name">Figma</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
