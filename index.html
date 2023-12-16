@@ -1,72 +1,147 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="NotArya">
-    <meta name="description" content="I'm Arya, A 14-year-old Developer from Iran.">
-    <meta name="keywords" content="notarya, not-arya, not, arya, developer, discord, notarya100, dev">
-    <meta name="author" content="Arya Honarmand">
-
-    <!-- Title -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer=""></script>
     <title>NotArya</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
-    <!-- Color Theme -->
-    <meta name="theme-color" content="#007bff">
-
-    <!-- Google Fonts - Space Grotesk -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100dvh;
-        background-color: #1e1e2e;
-        color: #fff;
-        font-family: 'Space Grotesk', sans-serif;
-      }
-
-      .container {
-        text-align: center;
-        max-width: 800px;
-        width: 90%;
-      }
-
-      a:hover {
-        background-color: rgb(63, 63, 60);
-        transition: ease-in-out 0.25s;
-      }
-
-      p {
-        font-size: 3em;
-        color: #d2d6e6;
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      @media only screen and (max-width: 600px) {
-        p {
-          font-size: 1.5em;
-        }
-      }
-    </style>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
   </head>
   <body>
-    <div class="container">
-      <p> I'm <span style="color: #9f78cc;">Arya</span>. </p>
-    </div>
-   
-  </body>
-</html>
+    <header class="header">
+      <div class="menu-btn-container">
+        <div class="container">
+          <button type="button" class="menu-btn">Menu</button>
+        </div>
+      </div>
+      <nav class="nav hidden">
+        <ol class="nav-items">
+          <li class="nav-item">
+            <a href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/notarya100">GitHub</a>
+          </li>
+        </ol>
+      </nav>
+      <div class="container">
+        <div class="header-textbox">
+          <h1 class="h1"> Hey! I'm <span style="color:#cba6f7">Arya</span>
+          </h1>
+          <p class="header-text"> I'm a 14-year-old Developer from Iran. I enjoy coding & playing video games. </p>
+          <div class="header-btns">
+            <a href="#projects" class="btn btn-cta">Projects</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="article">
+        <div class="container">
+          <h2 class="h2" id="projects">My Projects</h2>
+          <div class="article-boxes">
+        
+      </section>
+      <section class="article">
+        <div class="container">
+          <h2 class="h2" id="projects">Some More Info</h2>
+          <div class="article-boxes">
+            
+          
+          
+            <article class="article-box">
+              <div class="article-textbox">
+                <div>
+                  <h3 id="timeDisplay" class="h3">Math...</h3>
+                  <span class="tooltip">I live in Tehran, Iran</span>
+                  
+                </div>
+              </div>
+            </article>
+            <article class="article-box">
+              <div class="article-textbox">
+                <div>
+                  <h3 class="h3">Until My Birthday</h3>
+                  <p id="birthday" class="article-header"></p>
+                  <span class="tooltip">Feb 17 2010 (2024)</span>
+                  
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p class="footer-text"> © 2023 Created by NotArya </p>
+          
+          <label class="theme-switch" for="theme-switch">
+            <i class="fas fa-moon"></i>
+            <input type="checkbox" id="theme-switch" role="switch">
+          </label>
+        </div>
+      </div>
+    </footer>
+    <div class="cursor-dot" data-cursor></div>
+    <div class="cursor-outline" data-cursor></div>
+
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+      // GitHub username
+      const githubUsername = 'notarya100';
+
+      // GitHub API endpoint for user repositories
+      const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
+
+      // Fetch the repositories
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(repos => {
+          // Handle each repository
+          repos.forEach(repo => {
+            const articleBox = document.createElement('article');
+            articleBox.classList.add('article-box');
+
+            const articleTextbox = document.createElement('div');
+            articleTextbox.classList.add('article-textbox');
+
+            const title = document.createElement('h3');
+            title.classList.add('h3');
+            title.textContent = repo.name;
+
+            const description = document.createElement('p');
+            description.classList.add('article-text');
+            description.textContent = repo.description;
+
+            const info = document.createElement('div');
+            info.classList.add('article-info');
+
+            const link = document.createElement('a');
+            link.classList.add('link');
+            link.setAttribute('href', repo.html_url);
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+            link.textContent = 'View in GitHub';
+
+            // Append elements to the document
+            info.appendChild(link);
+            articleTextbox.appendChild(title);
+            articleTextbox.appendChild(description);
+            articleTextbox.appendChild(info);
+            articleBox.appendChild(articleTextbox);
+
+            // Add the new article box to the existing container
+            const articleBoxes = document.querySelector('.article-boxes');
+            articleBoxes.appendChild(articleBox);
+          });
+        })
+        .catch(error => console.error('Error fetching GitHub repositories:', error));
+    });
+  </script>
+</body></html>
