@@ -88,60 +88,88 @@
         </div>
       </div>
     </footer>
-    <div class="cursor-dot" data-cursor></div>
-    <div class="cursor-outline" data-cursor></div>
+    <div class='cursor' id="cursor"></div>
 
   <script>
-     document.addEventListener("DOMContentLoaded", function () {
-      // GitHub username
-      const githubUsername = 'notarya100';
+   document.addEventListener("DOMContentLoaded", function () {
+  // Display a loading message in the projects section
+  const loadingMessage = document.createElement('p');
+  loadingMessage.classList.add('loading-message');
+  loadingMessage.textContent = 'Loading repositories...';
+  const projects = document.querySelector('.article-boxes');
+  projects.appendChild(loadingMessage);
 
-      // GitHub API endpoint for user repositories
-      const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
+  // GitHub username
+  const githubUsername = 'notarya100';
 
-      // Fetch the repositories
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(repos => {
-          // Handle each repository
-          repos.forEach(repo => {
-            const articleBox = document.createElement('article');
-            articleBox.classList.add('article-box');
+  // GitHub API endpoint for user repositories
+  const apiUrl = `https://api.github.com/users/${githubUsername}/repos`;
 
-            const articleTextbox = document.createElement('div');
-            articleTextbox.classList.add('article-textbox');
+  // Fetch the repositories
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error fetching GitHub repositories');
+      }
+      return response.json();
+    })
+    .then(repos => {
+      // Handle each repository
+      repos.forEach(repo => {
+        const articleBox = document.createElement('article');
+        articleBox.classList.add('article-box');
 
-            const title = document.createElement('h3');
-            title.classList.add('h3');
-            title.textContent = repo.name;
+        const articleTextbox = document.createElement('div');
+        articleTextbox.classList.add('article-textbox');
 
-            const description = document.createElement('p');
-            description.classList.add('article-text');
-            description.textContent = repo.description;
+        const title = document.createElement('h3');
+        title.classList.add('h3');
+        title.textContent = repo.name;
 
-            const info = document.createElement('div');
-            info.classList.add('article-info');
+        const description = document.createElement('p');
+        description.classList.add('article-text');
+        description.textContent = repo.description;
 
-            const link = document.createElement('a');
-            link.classList.add('link');
-            link.setAttribute('href', repo.html_url);
-            link.setAttribute('target', '_blank');
-            link.setAttribute('rel', 'noopener');
-            link.textContent = 'View in GitHub';
+        const info = document.createElement('div');
+        info.classList.add('article-info');
 
-            // Append elements to the document
-            info.appendChild(link);
-            articleTextbox.appendChild(title);
-            articleTextbox.appendChild(description);
-            articleTextbox.appendChild(info);
-            articleBox.appendChild(articleTextbox);
+        const link = document.createElement('a');
+        link.classList.add('link');
+        link.setAttribute('href', repo.html_url);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+        link.textContent = 'View in GitHub';
 
-            // Add the new article box to the existing container
-            const articleBoxes = document.querySelector('.article-boxes');
-            articleBoxes.appendChild(articleBox);
-          });
-        })
-        .catch(error => console.error('Error fetching GitHub repositories:', error));
+        // Append elements to the document
+        info.appendChild(link);
+        articleTextbox.appendChild(title);
+        articleTextbox.appendChild(description);
+        articleTextbox.appendChild(info);
+        articleBox.appendChild(articleTextbox);
+
+        // Add the new article box to the existing container
+        const articleBoxes = document.querySelector('.article-boxes');
+        articleBoxes.appendChild(articleBox);
+
+        // Remove the loading message if it's still present
+        if (projects.contains(loadingMessage)) {
+          projects.removeChild(loadingMessage);
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching GitHub repositories:', error);
+      // Show an error message in the projects section
+      const errorMessage = document.createElement('p');
+      errorMessage.classList.add('error-message');
+      errorMessage.textContent = error.message;
+      projects.appendChild(errorMessage);
+
+      // Remove the loading message if it's still present
+      if (projects.contains(loadingMessage)) {
+        projects.removeChild(loadingMessage);
+      }
     });
+});
   </script>
 </body></html>

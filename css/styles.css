@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
   --h1: 4.5rem;
@@ -75,12 +75,13 @@ html {
 
 body {
   font-size: var(--text-medium);
-  font-family: "Inter", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   color: var(--body);
   background-color: var(--bg-color-primary);
   line-height: 1.4;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  cursor: none;
 }
 
 picture,
@@ -240,11 +241,12 @@ h3,
 .btn-cta {
   color: #fff;
   background-color: #2f2f48;
+  margin-bottom: 20px;
 }
 
 body.dark .btn-cta:hover,
 body.dark .btn-cta:focus {
-  box-shadow: #ffffff40 0 0 0 var(--gutter-nano);
+  box-shadow: #7f849c 0 0 0 var(--gutter-nano);
 }
 
 body.light .btn-cta:hover,
@@ -270,7 +272,9 @@ body.light .btn-cta:focus {
   text-decoration: none;
   color: var(--important);
   position: relative;
+  cursor: none;
 }
+
 
 .link::after,
 .link::before {
@@ -804,5 +808,42 @@ input:checked {
   100% {
       transform: scale(1) rotate(0);
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7f849c; 
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5e6174; 
+}
+
+.cursor {
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  mix-blend-mode: difference;
+  background-color: transparent;
+  z-index: 10000;
+  border: 2px solid white;
+  height: 30px;
+  width: 30px;
+  transition: all 200ms ease-out;
 }
 

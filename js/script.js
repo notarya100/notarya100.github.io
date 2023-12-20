@@ -139,7 +139,24 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("birthday").innerHTML = "Its my birthday! 🎉";
+    document.getElementById("birthday").innerHTML = "It's my birthday! 🎉";
   }
 }, 1000);
 
+var cursor = document.getElementById("cursor");
+document.body.addEventListener("mousemove", function(e) {
+  cursor.style.left = e.clientX + "px",
+    cursor.style.top = e.clientY + "px";
+});
+var cursor = document.querySelector('.cursor');
+
+function disableCursorOnMobile() {
+  if (window.innerWidth <= 767) {
+    cursor.style.display = "none";
+  } else {
+    cursor.style.display = "block";
+  }
+}
+
+// Call the function to disable the cursor on small and mobile devices
+disableCursorOnMobile();
