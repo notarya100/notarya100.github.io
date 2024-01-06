@@ -81,7 +81,6 @@ body {
   line-height: 1.4;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  cursor: none;
 }
 
 picture,
@@ -272,7 +271,7 @@ body.light .btn-cta:focus {
   text-decoration: none;
   color: var(--important);
   position: relative;
-  cursor: none;
+
 }
 
 
@@ -831,19 +830,5 @@ input:checked {
   background: #5e6174; 
 }
 
-.cursor {
-  position: fixed;
-  border-radius: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  pointer-events: none;
-  left: -100px;
-  top: 50%;
-  mix-blend-mode: difference;
-  background-color: transparent;
-  z-index: 10000;
-  border: 2px solid white;
-  height: 30px;
-  width: 30px;
-  transition: all 200ms ease-out;
-}
+
 

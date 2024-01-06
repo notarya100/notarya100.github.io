@@ -142,21 +142,3 @@ var x = setInterval(function() {
     document.getElementById("birthday").innerHTML = "It's my birthday! 🎉";
   }
 }, 1000);
-
-var cursor = document.getElementById("cursor");
-document.body.addEventListener("mousemove", function(e) {
-  cursor.style.left = e.clientX + "px",
-    cursor.style.top = e.clientY + "px";
-});
-var cursor = document.querySelector('.cursor');
-
-function disableCursorOnMobile() {
-  if (window.innerWidth <= 767) {
-    cursor.style.display = "none";
-  } else {
-    cursor.style.display = "block";
-  }
-}
-
-// Call the function to disable the cursor on small and mobile devices
-disableCursorOnMobile();
